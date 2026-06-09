@@ -309,8 +309,8 @@ wire   [1:0] buttons;
 wire [127:0] status;
 // [MiSTer-DB9 BEGIN] - DB9/SNAC8 support: USB-side joystick wires renamed + joydb mux
 wire [31:0]  joystick_0_USB, joystick_1_USB;
-wire [31:0]  joystick_0 = joydb_1ena ? (OSD_STATUS ? 32'b0 : {16'b0, joydb_1}) : joystick_0_USB;
-wire [31:0]  joystick_1 = joydb_2ena ? (OSD_STATUS ? 32'b0 : {16'b0, joydb_2}) : (joydb_1ena ? joystick_0_USB : joystick_1_USB);
+wire [31:0]  joystick_0 = joydb_1ena ? (OSD_STATUS ? 32'b0 : joydb_1_mapped[15:0]) : joystick_0_USB;
+wire [31:0]  joystick_1 = joydb_2ena ? (OSD_STATUS ? 32'b0 : joydb_2_mapped[15:0]) : (joydb_1ena ? joystick_0_USB : joystick_1_USB);
 // [MiSTer-DB9 END]
 wire  [10:0] ps2_key;
 
